@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HomePage from "./components/HomePage";
-import axios from "axios";
+import { createShortUrl } from "./apis/urlApi";
 
 function App() {
   const [longUrl, setLongUrl] = useState("");
@@ -15,8 +15,13 @@ function App() {
     setShortUrl("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/create", { longUrl });
-      setShortUrl(response.data.shortUrl);
+      const data = await createShortUrl(longUrl);
+      console.log(data);
+      if (data.shortUrl) {
+        setShortUrl(data.shortUrl);
+      } else {
+        setError("Failed to shorten URL. Please try again.");
+      }
     } catch (err) {
       setError("Failed to shorten URL. Please try again.");
       console.error(err);
@@ -25,16 +30,7 @@ function App() {
     }
   };
 
-  return (
-    <HomePage
-      longUrl={longUrl}
-      setLongUrl={setLongUrl}
-      handleShorten={handleShorten}
-      loading={loading}
-      error={error}
-      shortUrl={shortUrl}
-    />
-  );
+  return <HomePage longUrl={longUrl} setLongUrl={setLongUrl} handleShorten={handleShorten} loading={loading} error={error} shortUrl={shortUrl} />;
 }
 
 export default App;
