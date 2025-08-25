@@ -12,10 +12,9 @@ export const createShortUrl = async (req, res) => {
 export const redirectFromShortUrl = async (req, res) => {
    const { id } = req.params
    const url = await getShortUrl(id);
-
    console.log(url);
    if (url) {
-      res.redirect(url.full_url)
+      res.redirect(url.full_url);
    } else {
       res.status(404).send("Not Found")
    }

@@ -1,15 +1,9 @@
 import React from "react";
 
-export default function UrlForm({ longUrl, setLongUrl, handleShorten, loading }) {
+const UrlForm = ({ longUrl, setLongUrl, handleShorten, loading }) => {
   return (
     <div>
-      <input
-        type="url"
-        placeholder="Enter your long URL"
-        value={longUrl}
-        onChange={(e) => setLongUrl(e.target.value)}
-        className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-4 focus:ring-purple-300 transition"
-      />
+      <input type="url" placeholder="Enter your long URL" value={longUrl} onChange={(e) => setLongUrl(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-4 focus:ring-purple-300 transition" />
       <button
         onClick={handleShorten}
         disabled={loading}
@@ -20,4 +14,6 @@ export default function UrlForm({ longUrl, setLongUrl, handleShorten, loading })
       </button>
     </div>
   );
-}
+};
+
+export default UrlForm;
