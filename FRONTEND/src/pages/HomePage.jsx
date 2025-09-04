@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import UrlForm from "../components/UrlForm.jsx";
 import ShortUrlDisplay from "../components/ShortUrlDisplay.jsx";
+import { createShortUrl } from "../apis/url.api.js";
 
 const HomePage = () => {
   const [longUrl, setLongUrl] = useState("");
@@ -16,8 +16,10 @@ const HomePage = () => {
     setShortUrl("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/create", { url: longUrl });
-      setShortUrl(response.data);
+      const data = await createShortUrl(longUrl);
+      console.log(data);
+
+      setShortUrl(data);
     } catch (err) {
       setError("Failed to shorten URL. Please try again.");
       console.error(err);

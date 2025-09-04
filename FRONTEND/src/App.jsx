@@ -1,12 +1,9 @@
-import UrlForm from "./components/UrlForm.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import ShortUrlDisplay from "./components/ShortUrlDisplay.jsx";
+import React from 'react'
+import HomePage from './pages/HomePage'
 
 const App = () => {
   return (
-    <>
-    <HomePage/>
-    </>
+    <div><HomePage/></div>
   )
 }
 
